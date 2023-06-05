@@ -15,15 +15,27 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.contrib.sitemaps.views import index
+from django.urls import path, include
 from django.views.decorators.csrf import csrf_exempt
-from celery import app as celery_app
+from Student.views import *
 
+
+app_name = 'celery'
 @csrf_exempt
 def celery_view(request):
+    """
+
+    :param request:
+    :return:
+    """
     return app.handle_task(request)
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    # path('celery/', celery_view, name='celery'),
+    path("", include("Student.urls")),
+    # path("Student/", index),
+    # path("", index),
+    # path("Student/", include("Student.urls")),
+    path("admin/", admin.site.urls),
+    #path('celery/', celery_view, name='celery'),
 ]

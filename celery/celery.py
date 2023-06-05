@@ -1,11 +1,12 @@
 import os
-from celery.app import Celery
+from celery.app import celery
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Student.settings')
 
-app = Celery('mysite')
+app = celery('mysite')
 app.config_from_object('django.conf:settings', namespace='CELERY')
 app.autodiscover_tasks()
+
 
 @app.task(bind=True)
 def debug_task(self):
@@ -13,6 +14,10 @@ def debug_task(self):
 
 
 def celery():
+    return None
+
+
+def app():
     return None
 
 
