@@ -1,0 +1,6 @@
+<input type="submit" name="delete_student" value="Видалити студента">
+
+<form action="{% url 'school:student_delete' student.id %}" method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Видалити студента</button>
+</form>

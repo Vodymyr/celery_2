@@ -1,0 +1,10 @@
+<form method="post" action="{% url 'student_view' form.instance.id %}">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Зберегти">
+</form>
+
+<form method="post" action="{% url 'delete_student' form.instance.id %}">
+    {% csrf_token %}
+    <input type="submit" value="Видалити">
+</form>
